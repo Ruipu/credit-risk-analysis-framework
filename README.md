@@ -40,7 +40,7 @@ This step establishes the baseline risk distribution of the portfolio.
 
 ---
 
-### 2. [Sensitivity Analysis](Sensitivity_Analysis.ipynb)
+### 2. [Sensitivity Analysis](Sensitive_Analysis.ipynb)
 
 This module evaluates how the risk framework responds to small changes in borrower conditions.
 
