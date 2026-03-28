@@ -50,7 +50,7 @@ The resulting pseudo PD is compared with the baseline to assess whether the mode
 
 ---
 
-### 3. [Stress Testing](Stress_Testing)
+### 3. [Stress Testing](Stress_Testing.ipynb)
 
 This module analyzes how the entire portfolio behaves under adverse conditions.
 
@@ -70,7 +70,7 @@ For each scenario, borrower-level risk and portfolio-level metrics are recompute
 
 ---
 
-### 4. [Risk Migration Analysis](Risk_Migration_Matrix)
+### 4. [Risk Migration Analysis](Risk_Migration_Matrix.ipynb)
 
 This module examines how borrowers move across risk categories under stress.
 
