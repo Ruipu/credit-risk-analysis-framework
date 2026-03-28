@@ -1,26 +1,17 @@
-# Credit Risk Scoring, Stress Testing, and Risk Migration Analysis
+Credit Risk Analysis Framework
 
-This repository presents a structured **credit risk analysis framework** built using the German Credit dataset.  
-The project focuses on **interpretable risk modeling**, **scenario-based analysis**, and **portfolio-level risk monitoring** rather than pure machine learning prediction.
+This repository presents a structured credit risk analysis framework built using the German Credit dataset.
 
-Instead of training a black-box model, this project develops a **rule-based credit risk scoring framework** that translates borrower characteristics into:
+The project focuses on interpretable risk modeling, scenario-based analysis, and portfolio-level risk evaluation, rather than machine learning prediction.
 
-- a **risk score**
-- a **pseudo probability of default (pseudo PD)**
-- **risk buckets** for portfolio segmentation
+Instead of training a black-box model, this project constructs a rule-based credit risk scoring system that translates borrower characteristics into a risk score, a pseudo probability of default (pseudo PD), and risk categories.
 
-The framework is then extended to evaluate how borrower and portfolio risk evolve under:
+The framework is then extended to analyze how borrower and portfolio risk evolve under different conditions, including baseline, sensitivity, stress scenarios, and risk migration.
 
-- baseline conditions
-- mild borrower deterioration
-- adverse stress scenarios
-- risk migration across categories
+⸻
 
----
+Project Structure
 
-## Project Structure
-
-```text
 credit-risk-validation/
 ├── data/
 ├── model.ipynb
@@ -29,187 +20,119 @@ credit-risk-validation/
 ├── migration_matrix.ipynb
 └── README.md
 
+⸻
+
 Project Overview
 
-This repository contains four connected components:
+This repository contains four connected components.
 
-1. Baseline Credit Risk Scoring Framework
+1. Baseline Credit Risk Scoring
 
-Builds an interpretable, rule-based credit risk scoring system using borrower-level characteristics such as:
-	•	Age
-	•	Job
-	•	Housing
-	•	Saving accounts
-	•	Checking account
-	•	Credit amount
-	•	Duration
-	•	Purpose
+This module builds an interpretable, rule-based credit risk scoring framework.
 
-Categorical variables are mapped into ordered scores, continuous variables are standardized, and a weighted risk score is constructed using credit risk intuition.
+Borrower characteristics such as age, job, housing, savings, checking accounts, credit amount, and loan duration are mapped into structured numeric scores.
 
-The risk score is then transformed into a pseudo probability of default (pseudo PD) and used to classify borrowers into four risk groups:
-	•	Low
-	•	Moderate
-	•	Elevated
-	•	High
+These inputs are combined into a risk score using intuitive credit risk logic, and then transformed into a pseudo probability of default.
 
-This notebook establishes the baseline portfolio risk distribution.
+Borrowers are further grouped into four categories: Low, Moderate, Elevated, and High risk.
+
+This step establishes the baseline risk distribution of the portfolio.
 
 ⸻
 
 2. Sensitivity Analysis
 
-Evaluates whether the scoring framework responds appropriately to small, controlled deteriorations in borrower characteristics.
+This module evaluates how the risk framework responds to small changes in borrower conditions.
 
-The sensitivity scenario applies mild shocks such as:
-	•	Credit amount +10%
-	•	Duration +20%
-	•	Saving accounts deteriorating by one category
+Mild shocks are applied to borrower features, including increases in loan size and duration, as well as deterioration in savings.
 
-The resulting pseudo PD is compared with the baseline case to assess whether the framework is:
-	•	directionally consistent
-	•	economically intuitive
-	•	responsive to borrower-level deterioration
+The resulting pseudo PD is compared with the baseline to assess whether the model reacts in a directionally consistent and economically intuitive way.
 
 ⸻
 
 3. Stress Testing
 
-Extends the framework to portfolio-level adverse scenario analysis.
+This module analyzes how the entire portfolio behaves under adverse conditions.
 
-Two stress scenarios are constructed:
+Two scenarios are constructed:
 
-Mild Stress
-	•	Credit amount +20%
-	•	Duration +30%
-	•	Saving accounts deteriorate by one category
-	•	Checking account deteriorates by one category
+Mild stress:
+	•	Credit amount increases by 20 percent
+	•	Duration increases by 30 percent
+	•	Savings and checking conditions deteriorate
 
-Severe Stress
-	•	Credit amount +30%
-	•	Duration +50%
-	•	Saving accounts set to "little"
-	•	Checking account set to "little"
+Severe stress:
+	•	Credit amount increases by 30 percent
+	•	Duration increases by 50 percent
+	•	Savings and checking conditions drop to the lowest level
 
-For each scenario, the framework recomputes:
-	•	borrower-level pseudo PD
-	•	portfolio-level average risk
-	•	median pseudo PD
-	•	share of high-risk borrowers
-
-This allows the project to measure how overall portfolio risk changes under worsening borrower conditions.
+For each scenario, borrower-level risk and portfolio-level metrics are recomputed, including average risk, median risk, and the share of high-risk borrowers.
 
 ⸻
 
 4. Risk Migration Analysis
 
-Analyzes how borrowers move between risk buckets under stress.
+This module examines how borrowers move across risk categories under stress.
 
-Migration matrices are constructed for:
-	•	Baseline → Mild Stress
-	•	Baseline → Severe Stress
+Migration matrices are constructed to compare baseline risk categories with those under stress scenarios.
 
-This step shows how risk is reallocated across the portfolio, highlighting:
-	•	upward migration from Low to Moderate
-	•	migration from Moderate to Elevated
-	•	concentration of vulnerable borrowers in High-risk segments under severe stress
-
-Risk migration adds a portfolio monitoring and validation perspective to the project.
+This allows the analysis to capture how risk shifts across the portfolio, including movement from low to moderate risk and from elevated to high risk.
 
 ⸻
 
 Methodology
 
-The framework is intentionally designed to emphasize interpretability.
+The framework emphasizes interpretability and structured reasoning.
 
-Step 1: Rule-Based Risk Construction
+A rule-based scoring system is used to assign risk contributions based on borrower characteristics.
 
-Instead of fitting a statistical default model, the project manually assigns risk directions and weights based on basic credit risk logic.
+Higher loan amounts and longer durations increase risk, while stronger savings, better housing conditions, and more stable employment reduce risk.
 
-Examples:
-	•	larger credit amount → higher risk
-	•	longer duration → higher risk
-	•	stronger savings and checking positions → lower risk
-	•	more stable housing and job conditions → lower risk
+The resulting score is transformed into a pseudo probability of default using a logistic function.
 
-Step 2: Pseudo PD Transformation
-
-The rule-based risk score is passed through a logistic transformation to create a bounded pseudo probability of default.
-
-This pseudo PD should be interpreted as a risk-oriented probability-style measure, not as a production or regulatory PD estimate.
-
-Step 3: Scenario Analysis
-
-The same scoring logic is applied under baseline, sensitivity, and stress conditions to study how borrower and portfolio risk evolve.
-
-Step 4: Portfolio Segmentation and Migration
-
-Borrowers are grouped into risk buckets and tracked across scenarios to evaluate concentration and migration under adverse conditions.
+This value is used for comparison across scenarios rather than as a calibrated default probability.
 
 ⸻
 
-Key Analytical Questions
+Key Questions
 
-This repository is designed to answer the following questions:
-	1.	What does the baseline borrower risk distribution look like?
-	2.	Does the risk framework respond sensibly to mild borrower deterioration?
-	3.	How much does overall portfolio risk increase under adverse stress scenarios?
-	4.	Which borrowers are most vulnerable under stress?
-	5.	How does risk migrate across categories under worsening conditions?
+This project addresses several key questions:
 
-⸻
-
-Main Takeaways
-
-This project demonstrates how a simplified but interpretable credit risk framework can be used to study:
-	•	borrower-level vulnerability
-	•	portfolio-level deterioration
-	•	scenario-based risk escalation
-	•	migration into higher-risk segments under stress
-
-The results show that risk does not merely increase in average terms — it also concentrates and propagates across the portfolio under adverse conditions.
+What does the baseline risk distribution look like?
+Does the model respond appropriately to small borrower-level changes?
+How does portfolio risk evolve under adverse scenarios?
+Which borrowers are most vulnerable under stress?
+How does risk shift across categories when conditions deteriorate?
 
 ⸻
 
-Why This Project Matters
+Main Insights
 
-This repository is especially relevant for roles in:
-	•	Credit Risk
-	•	Risk Analytics
-	•	Model Validation
-	•	Quantitative Risk
-	•	Banking and Financial Analytics
+The results show that borrower risk increases consistently under both mild and severe stress scenarios.
 
-The project emphasizes several skills commonly used in these settings:
-	•	structured risk framework design
-	•	scenario analysis
-	•	sensitivity analysis
-	•	stress testing
-	•	portfolio segmentation
-	•	migration analysis
-	•	interpretable analytical modeling in Python
+Risk does not only increase on average. It also concentrates in higher-risk segments as borrower conditions worsen.
+
+Under severe stress, a substantial portion of borrowers moves into elevated and high-risk categories, indicating increased portfolio vulnerability.
 
 ⸻
 
 Tools Used
-	•	Python
-	•	pandas
-	•	NumPy
-	•	matplotlib
-	•	Jupyter Notebook
+
+Python
+pandas
+NumPy
+matplotlib
+Jupyter Notebook
 
 ⸻
 
 Notes
 
-This project is a demonstration framework, not a production risk system.
+This project is designed as an analytical framework rather than a production risk model.
 
-In particular:
-	•	model weights are manually specified
-	•	pseudo PD is illustrative rather than statistically calibrated
-	•	the framework is intended to demonstrate risk logic, scenario analysis, and portfolio behavior
+The scoring weights are manually specified, and the pseudo probability of default is illustrative.
 
-The goal is to show how borrower characteristics can be translated into a coherent and explainable risk analysis workflow.
+The goal is to demonstrate how borrower characteristics can be translated into an interpretable and structured risk analysis workflow.
 
 ⸻
 
@@ -217,4 +140,3 @@ Author
 
 Ruipu Gao
 PhD Candidate in Economics
-Focus areas: applied analytics, causal inference, credit risk analytics, and interpretable quantitative modeling
