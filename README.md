@@ -2,9 +2,9 @@
 
 This repository presents a structured credit risk analysis framework built using the German Credit dataset.
 
-The project focuses on interpretable risk modeling, scenario-based analysis, and portfolio-level risk evaluation, rather than machine learning prediction.
+The project focuses on interpretable risk modeling, scenario-based analysis, and portfolio-level risk evaluation.
 
-Instead of training a black-box model, this project constructs a rule-based credit risk scoring system that translates borrower characteristics into a risk score, a pseudo probability of default (pseudo PD), and risk categories.
+This project constructs a rule-based credit risk scoring system that translates borrower characteristics into a risk score, a pseudo probability of default (pseudo PD), and risk categories.
 
 The framework is then extended to analyze how borrower and portfolio risk evolve under different conditions, including baseline, sensitivity, stress scenarios, and risk migration.
 
@@ -14,10 +14,10 @@ The framework is then extended to analyze how borrower and portfolio risk evolve
 
 credit-risk-validation/  
 ├── data/  
-├── model.ipynb  
-├── sensitivity_analysis.ipynb  
-├── stress_testing.ipynb  
-├── migration_matrix.ipynb  
+├── Model_Baseline.ipynb  
+├── Sensitivity_Analysis.ipynb  
+├── Stress_Testing.ipynb  
+├── Risk_Migration_Matrix.ipynb  
 └── README.md  
 
 ---
@@ -26,7 +26,7 @@ credit-risk-validation/
 
 This repository contains four connected components.
 
-### 1. Baseline Credit Risk Scoring
+### 1. [Baseline Credit Risk Scoring](Model_Baseline.ipynb)
 
 This module builds an interpretable, rule-based credit risk scoring framework.
 
@@ -40,7 +40,7 @@ This step establishes the baseline risk distribution of the portfolio.
 
 ---
 
-### 2. Sensitivity Analysis
+### 2. [Sensitivity Analysis](Sensitivity_Analysis.ipynb)
 
 This module evaluates how the risk framework responds to small changes in borrower conditions.
 
@@ -50,7 +50,7 @@ The resulting pseudo PD is compared with the baseline to assess whether the mode
 
 ---
 
-### 3. Stress Testing
+### 3. [Stress Testing](Stress_Testing)
 
 This module analyzes how the entire portfolio behaves under adverse conditions.
 
@@ -70,7 +70,7 @@ For each scenario, borrower-level risk and portfolio-level metrics are recompute
 
 ---
 
-### 4. Risk Migration Analysis
+### 4. [Risk Migration Analysis](Risk_Migration_Matrix)
 
 This module examines how borrowers move across risk categories under stress.
 
