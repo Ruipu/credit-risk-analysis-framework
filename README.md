@@ -8,12 +8,15 @@ This project constructs a rule-based credit risk scoring system that translates 
 
 The framework is then extended to analyze how borrower and portfolio risk evolve under different conditions, including baseline, sensitivity, stress scenarios, and risk migration.
 
+The project also integrates SQL-based data preprocessing with Python-based risk modeling to simulate a realistic credit risk analytics workflow.
+
 ---
 
 ## Project Structure
 
 credit-risk-validation/  
 ├── data/  
+├── SQL_DataCleaning.ipynb  
 ├── Model_Baseline.ipynb  
 ├── Sensitivity_Analysis.ipynb  
 ├── Stress_Testing.ipynb  
@@ -78,6 +81,24 @@ Migration matrices are constructed to compare baseline risk categories with thos
 
 This allows the analysis to capture how risk shifts across the portfolio, including movement from low to moderate risk and from elevated to high risk.
 
+### 5. [SQL Data Cleaning & Validation](SQL_DataCleaning.ipynb)
+This module builds a structured SQL-based data preprocessing pipeline.
+
+Key steps include:
+
+- Extracting and restructuring raw borrower-level data  
+- Cleaning and standardizing categorical and numerical fields  
+- Handling missing values explicitly  
+- Constructing risk-relevant features  
+- Generating a model-ready dataset for downstream analysis  
+
+The module also performs data validation at multiple stages, including:
+
+- Data quality checks (missing values and consistency)  
+- Statistical validation of model inputs (distribution checks and summary statistics)  
+
+This step ensures that the dataset is reliable and suitable for credit risk modeling.
+
 ---
 
 ## Methodology
@@ -126,7 +147,7 @@ Under severe stress, a substantial portion of borrowers moves into elevated and 
 - NumPy  
 - matplotlib  
 - Jupyter Notebook  
-
+- SQL
 ---
 
 ## Notes
